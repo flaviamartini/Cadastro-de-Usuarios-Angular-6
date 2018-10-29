@@ -1,0 +1,38 @@
+<app-toolbar></app-toolbar>
+<mat-card class="shipping-card">
+  <h2 class="title">Usuários Cadastrados</h2>
+  <mat-card-content>
+    <mat-list class>
+      <div>
+        <button mat-raised-button color="white" type="submit" [routerLink]="['/register']">
+          <mat-icon style="color:#3F51B5">person_add</mat-icon>
+        </button>
+      
+      </div>
+      <h3 mat-subheader>Perfil Administrador</h3>
+      <mat-list-item *ngFor="let user of getAdm()">
+        <mat-icon mat-list-icon style="color:#3F51B5">person</mat-icon>
+        <h4 mat-line>
+          {{user.username}} {{user.firstName}} {{user.lastName}}   
+        </h4>
+        <button  mat-raised-button color="white" type="submit" (click)="deleteUser(user.id)">
+          <mat-icon style="color:rgb(182, 3, 3)">delete</mat-icon>
+        </button>
+        <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
+      </mat-list-item>
+    </mat-list>
+    <mat-list class>
+      <h3 mat-subheader>Perfil Usuário</h3>
+      <mat-list-item *ngFor="let user of getUsers()">
+        <mat-icon mat-list-icon style="color:#3F51B5">person</mat-icon>
+        <h4 mat-line>
+          {{user.username}} {{user.firstName}} {{user.lastName}}
+        </h4>
+        <button  mat-raised-button color="white" type="submit" (click)="deleteUser(user.id)">
+            <mat-icon style="color:rgb(182, 3, 3)">delete</mat-icon>
+          </button>
+        <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

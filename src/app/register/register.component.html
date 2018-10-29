@@ -1,0 +1,77 @@
+﻿<app-toolbar></app-toolbar>
+<form [formGroup]="registerForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="shipping-cardform">
+    <h2 class="title">Cadastrar Usuários</h2>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Nome" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+            <mat-error *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+              <div *ngIf="f.firstName.errors.required">Nome é obrigatório</div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Sobrenome" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+            <mat-error *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+              <div *ngIf="f.lastName.errors.required">Sobrenome é obrigatório</div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Nivel de permissao" formControlName="permission" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.permission.errors }">
+              <mat-option value="ADM">Adminstrador</mat-option>
+              <mat-option value="USER">Usuário</mat-option>
+            </mat-select>
+            <mat-error *ngIf="submitted && f.permission.errors" class="invalid-feedback">
+              <div *ngIf="f.permission.errors.required">Nível de permissão do usuário é obrigatório</div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Nome de Usuário" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+            <mat-error *ngIf="submitted && f.username.errors" class="invalid-feedback">
+              <div *ngIf="f.username.errors.required">Nome de usuário é obrigatório</div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput [type]="hide ? 'password' : 'text'" placeholder="Senha" formControlName="password" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+            <mat-icon matSuffix style="color:#a8b6bf" (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-error *ngIf="submitted && f.password.errors" class="invalid-feedback">
+              <div *ngIf="f.password.errors.required">Password is required</div>
+              <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col"></div>
+      </div>
+    </mat-card-content>
+   
+      <div class="form-group">
+        <button mat-raised-button color="primary" type="submit" [disabled]="loading" >Salvar</button>
+        <button mat-stroked-button color="primary" type="submit" [disabled]="loading" [routerLink]="['/login']">Cancelar</button>
+        <mat-spinner [diameter]="30" *ngIf="loading"></mat-spinner>
+       
+      </div>
+     
+
+
+      
+    
+  </mat-card>
+</form>
